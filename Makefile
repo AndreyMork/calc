@@ -1,5 +1,5 @@
 run:
-	npm run babel-node src/bin/calc.js
+	npm run babel-node src/repl.js
 
 install:
 	npm install
