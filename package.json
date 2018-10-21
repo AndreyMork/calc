@@ -1,0 +1,49 @@
+{
+  "name": "calc",
+  "version": "0.1.0",
+  "description": "",
+  "main": "dist/index.js",
+  "bin": {
+    "calc": "dist/bin/calc.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "babel-node": "babel-node",
+    "test": "jest",
+    "test-coverage": "jest --coverage",
+    "eslint": "eslint",
+    "build": "NODE_ENV=production babel src --out-dir dist --source-maps inline",
+    "prepublishOnly": "npm run build",
+    "watch-test": "jest --watch --notify"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AndreyMork/calc.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "*",
+    "babel-core": "*",
+    "babel-eslint": "*",
+    "babel-jest": "*",
+    "babel-preset-env": "*",
+    "babel-preset-stage-0": "*",
+    "eslint": "*",
+    "eslint-config-airbnb-base": "*",
+    "eslint-plugin-import": "*",
+    "eslint-plugin-jest": "*",
+    "jest": "*",
+    "jest-cli": "*"
+  },
+  "bugs": {
+    "url": "https://github.com/AndreyMork/calc"
+  },
+  "homepage": "https://github.com/AndreyMork/calc#readme",
+  "dependencies": {
+    "javascript-state-machine": "^3.1.0",
+    "lodash": "^4.17.11"
+  }
+}

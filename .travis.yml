@@ -1,0 +1,17 @@
+addons:
+  code_climate:
+    repo_token:
+      secure: 1HVTsDxj6vIht1e42MJOL5sErDF6oHE1+e2d1tudDkjNz0SAVukdv2s0yNMDmtMvErPwkDHMOSPrGGaG94y97T8V37DTsv/GRiUICQQqM5JQVrVIAoOb1s9PMMY88sAZQ7iPsYi1Q80OgHjEqIzoZ643c6zu+swcH3JruNrVmi3jAbJseJQI2Q3iKKzJ0d2s3jIeH30KZiv8eLRogRi+Czh/B1PV2lmiFfnoRY+lOEVqjhyYw3HGlN4raqUCJ8sSamQC6r6EG4JVz/TXjMThYU3gK3KELZ+H90CDhCA7Xnb6c3mTxIMTaDxtbbisqtX0fYy5MNXyCpIuucurKQceDFVSFzM4rY/FMrP0C6O+VJaNduhTdGZkOBSJ+1Px0sVwsJE+cByzLHWhofBA36kp+9Arl7SW/GfOfOsr7JZtOTsTIPgS6M4tJPO0Fp9ibgAsywv0IfV62gTHtkXYpJ3gbjBgFYDnO1JJBjUZdJbeAzJEElDgWjYflXn/BhcLopoPVqI++GVo460ysFa1xQR9hp4GWWm6pMvulDCiuMXewPkXXAvCJxq7zqM1kB3GdXRMgwJz3YXgomljXZCigq4OyofjtVoAAxlaBvlsfmr0S+rPdc0xtiUDDVJjI4qKzd9MmYCJhvIUNqZS6ddS1LDFb++N9zx1faNm2hQzN3M3W9E=
+
+language: node_js
+node_js:
+  - node
+before_script:
+  - npm install codeclimate-test-reporter -g
+
+script:
+  - make lint
+  - make test-coverage
+
+after_script:
+  - codeclimate-test-reporter <./coverage/lcov.info
