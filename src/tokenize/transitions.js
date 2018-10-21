@@ -1,5 +1,17 @@
 import { getTypeOfChar } from '../utils';
 
+const startParsing = {
+  name: 'startParsing',
+  from: '*',
+  to: 'pending',
+};
+
+const finishParsing = {
+  name: 'finishParsing',
+  from: '*',
+  to: 'stopped',
+};
+
 const saveToken = {
   name: 'saveToken',
   from: 'readyToSave',
@@ -31,6 +43,12 @@ const pendingTransitions = {
 const operatorTransitions = {
   name: 'step',
   from: 'operator',
+  to: 'readyToSave',
+};
+
+const trashTransitions = {
+  name: 'step',
+  from: 'trash',
   to: 'readyToSave',
 };
 
@@ -80,9 +98,12 @@ const fractionalPartTransitions = {
 };
 
 export default [
+  startParsing,
+  finishParsing,
   operatorTransitions,
   saveToken,
   pendingTransitions,
+  trashTransitions,
   nameTransitions,
   integerPartTransitions,
   fractionalPartTransitions,

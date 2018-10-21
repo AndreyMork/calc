@@ -25,14 +25,15 @@ export default new StateMachine({
       this.tokens.push(this.acc);
       this.acc = '';
     },
-    haltMachine() {
+    onStartParsing() {
+      this.acc = '';
+      this.tokens = [];
+    },
+    onFinishParsing() {
       if (this.acc) {
         this.tokens.push(this.acc);
       }
-    },
-    startMachine() {
       this.acc = '';
-      this.tokens = [];
     },
   },
 });

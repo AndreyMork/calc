@@ -1,9 +1,10 @@
-import tokenizator from './tokenizator';
+import tokenizator from './tokenizatorOptions';
 
 
 export default (str) => {
-  tokenizator.startMachine();
   const characters = str.split('');
+
+  tokenizator.startParsing();
   characters.forEach((char) => {
     tokenizator.step(char);
     if (tokenizator.is('readyToSave')) {
@@ -13,7 +14,7 @@ export default (str) => {
       tokenizator.step(char);
     }
   });
-  tokenizator.haltMachine();
+  tokenizator.finishParsing();
 
   return tokenizator.getTokens();
 };
