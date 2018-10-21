@@ -43,6 +43,7 @@
   },
   "homepage": "https://github.com/AndreyMork/calc#readme",
   "dependencies": {
+    "commander": "^2.19.0",
     "javascript-state-machine": "^3.1.0",
     "lodash": "^4.17.11"
   }
