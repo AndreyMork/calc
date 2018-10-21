@@ -30,5 +30,9 @@ export default new StateMachine({
         this.tokens.push(this.acc);
       }
     },
+    startMachine() {
+      this.acc = '';
+      this.tokens = [];
+    },
   },
 });

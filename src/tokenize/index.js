@@ -2,6 +2,7 @@ import tokenizator from './tokenizator';
 
 
 export default (str) => {
+  tokenizator.startMachine();
   const characters = str.split('');
   characters.forEach((char) => {
     tokenizator.step(char);
