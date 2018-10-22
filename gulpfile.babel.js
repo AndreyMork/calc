@@ -6,6 +6,7 @@ import container from './src/container';
 
 gulp.task('debugConsole', (done) => {
   debug.enable('*,-calc:utils*');
+  // debug.enable('*');
   const replServer = repl.start({
     prompt: '> ',
   });
