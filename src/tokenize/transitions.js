@@ -1,5 +1,11 @@
 import { getTypeOfChar } from '../utils';
 
+
+const defaultSaveTransitions = {
+  whitespace: 'readyToSave',
+  operator: 'readyToSave',
+};
+
 const startParsing = {
   name: 'startParsing',
   from: '*',
@@ -30,7 +36,7 @@ const pendingTransitions = {
       alpha: 'name',
       underscore: 'name',
       digit: 'integerPart',
-      point: 'fractionalPart',
+      point: 'singlePoint',
       operator: 'operator',
       trash: 'trash',
     };
@@ -49,7 +55,12 @@ const operatorTransitions = {
 const trashTransitions = {
   name: 'step',
   from: 'trash',
-  to: 'readyToSave',
+  to: (char) => {
+    const type = getTypeOfChar(char);
+
+    const nextState = defaultSaveTransitions[type] || 'trash';
+    return nextState;
+  },
 };
 
 const nameTransitions = {
@@ -63,7 +74,7 @@ const nameTransitions = {
       digit: 'name',
     };
 
-    const nextState = transitions[type] || 'readyToSave';
+    const nextState = transitions[type] || defaultSaveTransitions[type] || 'trash';
     return nextState;
   },
 };
@@ -75,10 +86,38 @@ const integerPartTransitions = {
     const type = getTypeOfChar(char);
     const transitions = {
       digit: 'integerPart',
-      point: 'fractionalPart',
+      point: 'point',
     };
 
-    const nextState = transitions[type] || 'readyToSave';
+    const nextState = transitions[type] || defaultSaveTransitions[type] || 'trash';
+    return nextState;
+  },
+};
+
+const singlePointTransitions = {
+  name: 'step',
+  from: 'singlePoint',
+  to: (char) => {
+    const type = getTypeOfChar(char);
+    const transitions = {
+      digit: 'fractionalPart',
+    };
+
+    const nextState = transitions[type] || defaultSaveTransitions[type] || 'trash';
+    return nextState;
+  },
+};
+
+const pointTranisitions = {
+  name: 'step',
+  from: 'point',
+  to: (char) => {
+    const type = getTypeOfChar(char);
+    const transitions = {
+      digit: 'fractionalPart',
+    };
+
+    const nextState = transitions[type] || defaultSaveTransitions[type] || 'trash';
     return nextState;
   },
 };
@@ -92,7 +131,7 @@ const fractionalPartTransitions = {
       digit: 'fractionalPart',
     };
 
-    const nextState = transitions[type] || 'readyToSave';
+    const nextState = transitions[type] || defaultSaveTransitions[type] || 'trash';
     return nextState;
   },
 };
@@ -106,5 +145,7 @@ export default [
   trashTransitions,
   nameTransitions,
   integerPartTransitions,
+  singlePointTransitions,
+  pointTranisitions,
   fractionalPartTransitions,
 ];
