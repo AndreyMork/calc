@@ -11,6 +11,7 @@ export default new StateMachine({
   data: {
     acc: '',
     tokens: [],
+    tokenType: null,
   },
   methods: {
     getTokens() {
@@ -24,23 +25,27 @@ export default new StateMachine({
         this.acc = `${this.acc}${char}`;
       }
     },
-    onSaveToken() {
-      tokenizatorLog(`saving '${this.acc}'`);
-      this.tokens.push(this.acc);
+    saveAcc() {
+      tokenizatorLog(`saving '${this.acc}' as ${this.tokenType}`);
+      this.tokens.push({ val: this.acc, type: this.tokenType });
       this.acc = '';
+      this.tokenType = null;
+    },
+    onSaveToken() {
+      this.saveAcc();
     },
     onStartParsing() {
       tokenizatorLog('tokenization started');
       this.acc = '';
+      this.tokenType = null;
       this.tokens = [];
     },
-    onFinishParsing() {
+    finishParsing() {
       if (this.acc) {
-        tokenizatorLog(`saving '${this.acc}'`);
-        this.tokens.push(this.acc);
+        this.step(' ');
+        this.saveToken();
       }
       tokenizatorLog('tokenization complete');
-      this.acc = '';
     },
   },
 });

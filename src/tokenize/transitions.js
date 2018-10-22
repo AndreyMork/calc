@@ -12,12 +12,6 @@ const startParsing = {
   to: 'pending',
 };
 
-const finishParsing = {
-  name: 'finishParsing',
-  from: '*',
-  to: 'stopped',
-};
-
 const saveToken = {
   name: 'saveToken',
   from: 'readyToSave',
@@ -49,16 +43,23 @@ const pendingTransitions = {
 const operatorTransitions = {
   name: 'step',
   from: 'operator',
-  to: 'readyToSave',
+  to() {
+    this.tokenType = 'operator';
+    return 'readyToSave';
+  },
 };
 
 const trashTransitions = {
   name: 'step',
   from: 'trash',
-  to: (char) => {
+  to(char) {
     const type = getTypeOfChar(char);
 
     const nextState = defaultSaveTransitions[type] || 'trash';
+    if (nextState === 'readyToSave') {
+      this.tokenType = 'trash';
+    }
+
     return nextState;
   },
 };
@@ -66,7 +67,7 @@ const trashTransitions = {
 const nameTransitions = {
   name: 'step',
   from: 'name',
-  to: (char) => {
+  to(char) {
     const type = getTypeOfChar(char);
     const transitions = {
       alpha: 'name',
@@ -75,6 +76,10 @@ const nameTransitions = {
     };
 
     const nextState = transitions[type] || defaultSaveTransitions[type] || 'trash';
+    if (nextState === 'readyToSave') {
+      this.tokenType = 'id';
+    }
+
     return nextState;
   },
 };
@@ -82,7 +87,7 @@ const nameTransitions = {
 const integerPartTransitions = {
   name: 'step',
   from: 'integerPart',
-  to: (char) => {
+  to(char) {
     const type = getTypeOfChar(char);
     const transitions = {
       digit: 'integerPart',
@@ -90,6 +95,10 @@ const integerPartTransitions = {
     };
 
     const nextState = transitions[type] || defaultSaveTransitions[type] || 'trash';
+    if (nextState === 'readyToSave') {
+      this.tokenType = 'num';
+    }
+
     return nextState;
   },
 };
@@ -97,27 +106,36 @@ const integerPartTransitions = {
 const singlePointTransitions = {
   name: 'step',
   from: 'singlePoint',
-  to: (char) => {
+  to(char) {
     const type = getTypeOfChar(char);
     const transitions = {
       digit: 'fractionalPart',
     };
 
     const nextState = transitions[type] || defaultSaveTransitions[type] || 'trash';
+    if (nextState === 'readyToSave') {
+      this.tokenType = 'trash';
+    }
+
     return nextState;
   },
+
 };
 
 const pointTranisitions = {
   name: 'step',
   from: 'point',
-  to: (char) => {
+  to(char) {
     const type = getTypeOfChar(char);
     const transitions = {
       digit: 'fractionalPart',
     };
 
     const nextState = transitions[type] || defaultSaveTransitions[type] || 'trash';
+    if (nextState === 'readyToSave') {
+      this.tokenType = 'num';
+    }
+
     return nextState;
   },
 };
@@ -125,20 +143,23 @@ const pointTranisitions = {
 const fractionalPartTransitions = {
   name: 'step',
   from: 'fractionalPart',
-  to: (char) => {
+  to(char) {
     const type = getTypeOfChar(char);
     const transitions = {
       digit: 'fractionalPart',
     };
 
     const nextState = transitions[type] || defaultSaveTransitions[type] || 'trash';
+    if (nextState === 'readyToSave') {
+      this.tokenType = 'num';
+    }
+
     return nextState;
   },
 };
 
 export default [
   startParsing,
-  finishParsing,
   operatorTransitions,
   saveToken,
   pendingTransitions,
