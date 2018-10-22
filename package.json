@@ -10,13 +10,13 @@
     "dist"
   ],
   "scripts": {
+    "gulp": "gulp",
     "babel-node": "babel-node",
     "test": "jest",
-    "test-coverage": "jest --coverage",
+    "nodemon": "nodemon",
     "eslint": "eslint",
     "build": "NODE_ENV=production babel src --out-dir dist --source-maps inline",
-    "prepublishOnly": "npm run build",
-    "watch-test": "jest --watch --notify"
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -43,6 +43,9 @@
   },
   "homepage": "https://github.com/AndreyMork/calc#readme",
   "dependencies": {
+    "commander": "^2.19.0",
+    "debug": "^4.1.0",
+    "gulp": "^4.0.0",
     "javascript-state-machine": "^3.1.0",
     "lodash": "^4.17.11"
   }

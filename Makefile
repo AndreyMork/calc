@@ -1,5 +1,8 @@
 run:
-	npm run babel-node src/index.js
+	npm run babel-node src/bin/calc.js
+
+debug-console:
+	npm run gulp debugConsole
 
 install:
 	npm install
@@ -15,10 +18,10 @@ lint:
 	npm run eslint .
 
 test:
-	npm run test
+	npm test
 
 test-coverage:
-	npm run test-coverage
+	npm test -- --coverage
 
 watch-test:
-	npm run watch-test
+	npm test -- --watch --notify

@@ -1,9 +1,14 @@
+import logger from '../logger';
 import tokenizator from './tokenizator';
 
+const tokenizeLog = logger.extend('tokenize');
 
 export default (str) => {
-  tokenizator.startMachine();
+  // TODO: input str errors
+  tokenizeLog(`input is '${str}'`);
   const characters = str.split('');
+
+  tokenizator.startParsing();
   characters.forEach((char) => {
     tokenizator.step(char);
     if (tokenizator.is('readyToSave')) {
@@ -13,7 +18,10 @@ export default (str) => {
       tokenizator.step(char);
     }
   });
-  tokenizator.haltMachine();
+  tokenizator.finishParsing();
 
-  return tokenizator.getTokens();
+  const tokens = tokenizator.getTokens();
+  tokenizeLog('Tokens are:');
+  tokenizeLog(tokens);
+  return tokens;
 };

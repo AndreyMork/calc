@@ -2,8 +2,8 @@ import tokenize from '../src/tokenize';
 
 describe('tokenization', () => {
   test('tokenization', () => {
-    const inputStr = 'abc + 123   ';
-    const expectedTokens = ['abc', '+', '123'];
+    const inputStr = 'abc + 123 && ';
+    const expectedTokens = ['abc', '+', '123', '&', '&'];
     expect(tokenize(inputStr)).toEqual(expectedTokens);
 
     const inputStr2 = ' abc + __a_b12-.5* 432   \t   / 12.2';

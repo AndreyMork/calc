@@ -1,6 +1,9 @@
 import StateMachine from 'javascript-state-machine';
+import logger from '../logger';
 import transitions from './transitions';
 
+
+const tokenizatorLog = logger.extend('tokenize:fsm');
 
 export default new StateMachine({
   transitions,
@@ -22,17 +25,22 @@ export default new StateMachine({
       }
     },
     onSaveToken() {
+      tokenizatorLog(`saving '${this.acc}'`);
       this.tokens.push(this.acc);
       this.acc = '';
     },
-    haltMachine() {
-      if (this.acc) {
-        this.tokens.push(this.acc);
-      }
-    },
-    startMachine() {
+    onStartParsing() {
+      tokenizatorLog('tokenization started');
       this.acc = '';
       this.tokens = [];
+    },
+    onFinishParsing() {
+      if (this.acc) {
+        tokenizatorLog(`saving '${this.acc}'`);
+        this.tokens.push(this.acc);
+      }
+      tokenizatorLog('tokenization complete');
+      this.acc = '';
     },
   },
 });

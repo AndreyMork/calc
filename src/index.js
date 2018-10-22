@@ -1,5 +1,12 @@
 import tokenize from './tokenize';
+import logger from './logger';
 
-const dataString = '123 +/-*abc ab*12c 12.5 .2  123';
-const tokens = tokenize(dataString);
-console.log(tokens);
+
+export const mainLog = logger.extend('main');
+
+export default (inputStr) => {
+  mainLog(`input is '${inputStr}'`);
+  const tokens = tokenize(inputStr);
+
+  return tokens;
+};
