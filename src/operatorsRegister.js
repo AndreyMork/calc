@@ -12,7 +12,7 @@ const operationFactory = (priority, arity, associativity, callback) => ({
 
 // tier === priority. Lower tier === lower priority.
 const tierConstructor = tier => (
-  otherArgs => operationFactory(tier, ...otherArgs));
+  (...otherArgs) => operationFactory(tier, ...otherArgs));
 
 
 // *** Tier1 ***
@@ -35,10 +35,11 @@ const tierTwoOperations = {
 const buildTierThreeOperation = tierConstructor(3);
 
 const tierThreeOperations = {
-  '*': buildTierThreeOperation(2, 'right', math.pow),
+  '^': buildTierThreeOperation(2, 'right', math.pow),
 };
 
-export {
+
+export default {
   ...tierOneOperations,
   ...tierTwoOperations,
   ...tierThreeOperations,
