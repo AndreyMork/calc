@@ -55,7 +55,7 @@ const trashTransitions = {
   to(char) {
     const type = getTypeOfChar(char);
 
-    const nextState = defaultSaveTransitions[type] || 'trash';
+    const nextState = defaultSaveTransitions[type] ?? 'trash';
     if (nextState === 'readyToSave') {
       this.tokenType = 'trash';
     }
@@ -75,7 +75,7 @@ const nameTransitions = {
       digit: 'name',
     };
 
-    const nextState = transitions[type] || defaultSaveTransitions[type] || 'trash';
+    const nextState = transitions[type] ?? defaultSaveTransitions[type] ?? 'trash';
     if (nextState === 'readyToSave') {
       this.tokenType = 'id';
     }
@@ -94,7 +94,7 @@ const integerPartTransitions = {
       point: 'point',
     };
 
-    const nextState = transitions[type] || defaultSaveTransitions[type] || 'trash';
+    const nextState = transitions[type] ?? defaultSaveTransitions[type] ?? 'trash';
     if (nextState === 'readyToSave') {
       this.tokenType = 'num';
     }
@@ -112,7 +112,7 @@ const singlePointTransitions = {
       digit: 'fractionalPart',
     };
 
-    const nextState = transitions[type] || defaultSaveTransitions[type] || 'trash';
+    const nextState = transitions[type] ?? defaultSaveTransitions[type] ?? 'trash';
     if (nextState === 'readyToSave') {
       this.tokenType = 'trash';
     }
@@ -131,7 +131,7 @@ const pointTranisitions = {
       digit: 'fractionalPart',
     };
 
-    const nextState = transitions[type] || defaultSaveTransitions[type] || 'trash';
+    const nextState = transitions[type] ?? defaultSaveTransitions[type] ?? 'trash';
     if (nextState === 'readyToSave') {
       this.tokenType = 'num';
     }
@@ -149,7 +149,7 @@ const fractionalPartTransitions = {
       digit: 'fractionalPart',
     };
 
-    const nextState = transitions[type] || defaultSaveTransitions[type] || 'trash';
+    const nextState = transitions[type] ?? defaultSaveTransitions[type] ?? 'trash';
     if (nextState === 'readyToSave') {
       this.tokenType = 'num';
     }
