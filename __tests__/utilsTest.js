@@ -1,6 +1,6 @@
-import { getTypeOfChar } from '../src/utils';
+import { getTypeOfChar, isNumber } from '../src/utils';
 
-describe('type of character', () => {
+describe('getTypeOfChar', () => {
   test('alpha', () => {
     expect(getTypeOfChar('a')).toBe('alpha');
     expect(getTypeOfChar('Z')).toBe('alpha');
@@ -39,5 +39,26 @@ describe('type of character', () => {
     expect(() => getTypeOfChar('abc')).toThrow();
     expect(() => getTypeOfChar(1)).toThrow();
     expect(() => getTypeOfChar({})).toThrow();
+  });
+});
+
+describe('isNumber', () => {
+  test('number', () => {
+    expect(isNumber(12)).toBe(true);
+    expect(isNumber('-.3')).toBe(true);
+    expect(isNumber('12.2')).toBe(true);
+    expect(isNumber('0.')).toBe(true);
+  });
+
+  test('not number', () => {
+    expect(isNumber('')).toBe(false);
+    expect(isNumber()).toBe(false);
+    expect(isNumber(null)).toBe(false);
+    expect(isNumber('0.a')).toBe(false);
+    expect(isNumber('abc')).toBe(false);
+    expect(isNumber('.12.')).toBe(false);
+    expect(isNumber(NaN)).toBe(false);
+    expect(isNumber(Infinity)).toBe(false);
+    expect(isNumber([0])).toBe(false);
   });
 });

@@ -27,6 +27,22 @@ export const getTypeOfChar = (char) => {
   return type;
 };
 
+
+export const isNumber = (value) => {
+  const typeOfValue = typeof value?.valueOf?.();
+  if (typeOfValue !== 'string' && typeOfValue !== 'number') {
+    return false;
+  }
+  if (value === '') {
+    return false;
+  }
+
+  const castedToNum = Number(value);
+  return !Number.isNaN(castedToNum) && Number.isFinite(castedToNum);
+};
+
+
 export default {
   getTypeOfChar,
+  isNumber,
 };
