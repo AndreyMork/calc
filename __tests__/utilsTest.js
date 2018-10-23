@@ -24,6 +24,7 @@ describe('type of character', () => {
     expect(getTypeOfChar('-')).toBe('operator');
     expect(getTypeOfChar('/')).toBe('operator');
     expect(getTypeOfChar('*')).toBe('operator');
+    expect(getTypeOfChar('^')).toBe('operator');
     expect(getTypeOfChar('&')).not.toBe('operator');
   });
 
