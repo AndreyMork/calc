@@ -4,6 +4,7 @@ describe('type of character', () => {
   test('alpha', () => {
     expect(getTypeOfChar('a')).toBe('alpha');
     expect(getTypeOfChar('Z')).toBe('alpha');
+    expect(getTypeOfChar('æ')).toBe('alpha');
     expect(getTypeOfChar('1')).not.toBe('alpha');
   });
 
