@@ -20,7 +20,7 @@ export const getTypeOfChar = (char) => {
     underscore: /[_]/.test(char),
     whitespace: /\s/.test(char),
     point: /[.,]/.test(char),
-    operator: /[+\-*/]/.test(char),
+    operator: /[+\-*/^]/.test(char),
   };
   const type = _.findKey(matchers) || 'trash';
   log(`'${char}' is '${type}'`);
