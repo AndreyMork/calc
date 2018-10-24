@@ -1,7 +1,7 @@
-import tokenize from '../src/tokenize';
+import getLexemes from '../src/tokenize/getLexemes';
 
 describe('tokenization', () => {
-  test('tokenization', () => {
+  test('lexeme scanner', () => {
     const inputStr = 'abc + 123 && ';
     const expectedTokens = [
       { val: 'abc', type: 'id' },
@@ -9,7 +9,7 @@ describe('tokenization', () => {
       { val: '123', type: 'num' },
       { val: '&&', type: 'trash' },
     ];
-    expect(tokenize(inputStr)).toEqual(expectedTokens);
+    expect(getLexemes(inputStr)).toEqual(expectedTokens);
 
     const inputStr2 = ' + __a_b12-.5* 432 2.   \t .  a..a 12.2';
     const expectedTokens2 = [
@@ -25,7 +25,7 @@ describe('tokenization', () => {
       { val: '12.2', type: 'num' },
     ];
 
-    expect(tokenize(inputStr2)).toEqual(expectedTokens2);
+    expect(getLexemes(inputStr2)).toEqual(expectedTokens2);
 
     const trashStr = '2abc .abc  12.abc 12.3&&';
     const expectedTokens3 = [
@@ -34,6 +34,6 @@ describe('tokenization', () => {
       { val: '12.abc', type: 'trash' },
       { val: '12.3&&', type: 'trash' },
     ];
-    expect(tokenize(trashStr)).toEqual(expectedTokens3);
+    expect(getLexemes(trashStr)).toEqual(expectedTokens3);
   });
 });

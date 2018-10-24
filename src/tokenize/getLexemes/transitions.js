@@ -1,4 +1,4 @@
-import { getTypeOfChar } from '../utils';
+import { getTypeOfChar } from '../../utils';
 
 
 const defaultSaveTransitions = {
@@ -6,14 +6,14 @@ const defaultSaveTransitions = {
   operator: 'readyToSave',
 };
 
-const startParsing = {
-  name: 'startParsing',
+const startScanning = {
+  name: 'startScanning',
   from: '*',
   to: 'pending',
 };
 
-const saveToken = {
-  name: 'saveToken',
+const saveLexeme = {
+  name: 'saveLexeme',
   from: 'readyToSave',
   to: 'pending',
 };
@@ -21,7 +21,7 @@ const saveToken = {
 // TODO: unary minus?
 // TODO: brackets
 const pendingTransitions = {
-  name: 'step',
+  name: 'scan',
   from: 'pending',
   to: (char) => {
     const type = getTypeOfChar(char);
@@ -41,23 +41,23 @@ const pendingTransitions = {
 };
 
 const operatorTransitions = {
-  name: 'step',
+  name: 'scan',
   from: 'operator',
   to() {
-    this.tokenType = 'operator';
+    this.lexemeType = 'operator';
     return 'readyToSave';
   },
 };
 
 const trashTransitions = {
-  name: 'step',
+  name: 'scan',
   from: 'trash',
   to(char) {
     const type = getTypeOfChar(char);
 
     const nextState = defaultSaveTransitions[type] ?? 'trash';
     if (nextState === 'readyToSave') {
-      this.tokenType = 'trash';
+      this.lexemeType = 'trash';
     }
 
     return nextState;
@@ -65,7 +65,7 @@ const trashTransitions = {
 };
 
 const nameTransitions = {
-  name: 'step',
+  name: 'scan',
   from: 'name',
   to(char) {
     const type = getTypeOfChar(char);
@@ -77,7 +77,7 @@ const nameTransitions = {
 
     const nextState = transitions[type] ?? defaultSaveTransitions[type] ?? 'trash';
     if (nextState === 'readyToSave') {
-      this.tokenType = 'id';
+      this.lexemeType = 'id';
     }
 
     return nextState;
@@ -85,7 +85,7 @@ const nameTransitions = {
 };
 
 const integerPartTransitions = {
-  name: 'step',
+  name: 'scan',
   from: 'integerPart',
   to(char) {
     const type = getTypeOfChar(char);
@@ -96,7 +96,7 @@ const integerPartTransitions = {
 
     const nextState = transitions[type] ?? defaultSaveTransitions[type] ?? 'trash';
     if (nextState === 'readyToSave') {
-      this.tokenType = 'num';
+      this.lexemeType = 'num';
     }
 
     return nextState;
@@ -104,7 +104,7 @@ const integerPartTransitions = {
 };
 
 const singlePointTransitions = {
-  name: 'step',
+  name: 'scan',
   from: 'singlePoint',
   to(char) {
     const type = getTypeOfChar(char);
@@ -114,7 +114,7 @@ const singlePointTransitions = {
 
     const nextState = transitions[type] ?? defaultSaveTransitions[type] ?? 'trash';
     if (nextState === 'readyToSave') {
-      this.tokenType = 'trash';
+      this.lexemeType = 'trash';
     }
 
     return nextState;
@@ -123,7 +123,7 @@ const singlePointTransitions = {
 };
 
 const pointTranisitions = {
-  name: 'step',
+  name: 'scan',
   from: 'point',
   to(char) {
     const type = getTypeOfChar(char);
@@ -133,7 +133,7 @@ const pointTranisitions = {
 
     const nextState = transitions[type] ?? defaultSaveTransitions[type] ?? 'trash';
     if (nextState === 'readyToSave') {
-      this.tokenType = 'num';
+      this.lexemeType = 'num';
     }
 
     return nextState;
@@ -141,7 +141,7 @@ const pointTranisitions = {
 };
 
 const fractionalPartTransitions = {
-  name: 'step',
+  name: 'scan',
   from: 'fractionalPart',
   to(char) {
     const type = getTypeOfChar(char);
@@ -151,7 +151,7 @@ const fractionalPartTransitions = {
 
     const nextState = transitions[type] ?? defaultSaveTransitions[type] ?? 'trash';
     if (nextState === 'readyToSave') {
-      this.tokenType = 'num';
+      this.lexemeType = 'num';
     }
 
     return nextState;
@@ -159,9 +159,9 @@ const fractionalPartTransitions = {
 };
 
 export default [
-  startParsing,
+  startScanning,
   operatorTransitions,
-  saveToken,
+  saveLexeme,
   pendingTransitions,
   trashTransitions,
   nameTransitions,
