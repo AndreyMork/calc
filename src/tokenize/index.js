@@ -1,4 +1,9 @@
-// import { tokenizeLog } from '../loggers';
+import { tokenizeLog } from '../loggers';
+import getLexemes from './getLexemes';
+import evaluateLexemes from './evaluateLexemes';
 
 
-export default () => {};
+export default (inputStr) => {
+  tokenizeLog(`input: '${inputStr}'`);
+  return inputStr |> getLexemes |> evaluateLexemes;
+};
