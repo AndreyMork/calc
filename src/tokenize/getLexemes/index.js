@@ -1,10 +1,10 @@
 import scanner from './scanner';
-import { getLexemesLog } from '../../loggers';
+// import { getLexemesLog } from '../../loggers';
 
 
 export default (str) => {
   // TODO: input str errors
-  getLexemesLog(`input is '${str}'`);
+  // getLexemesLog(`input is '${str}'`);
   const characters = str.split('');
 
   scanner.startScanning();
@@ -20,7 +20,7 @@ export default (str) => {
   scanner.finishScanning();
 
   const lexemes = scanner.getLexemes();
-  getLexemesLog('Lexemes are:');
-  getLexemesLog(lexemes);
+  // getLexemesLog('Lexemes are:');
+  // getLexemesLog(lexemes);
   return lexemes;
 };

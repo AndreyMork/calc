@@ -11,6 +11,8 @@ gulp.task('debugConsole', (done) => {
     prompt: '> ',
   });
 
+  const testStr = '123 - 12.^2 * .0';
+  replServer.context.testStr = testStr;
   Object.keys(container).forEach((key) => {
     replServer.context[key] = container[key];
   });
