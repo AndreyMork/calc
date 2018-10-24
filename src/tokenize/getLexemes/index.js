@@ -1,7 +1,6 @@
 import scanner from './scanner';
-import logger from '../../logger';
+import { getLexemesLog } from '../../logger';
 
-const getLexemesLog = logger.extend('tokenize:getLexemes');
 
 export default (str) => {
   // TODO: input str errors

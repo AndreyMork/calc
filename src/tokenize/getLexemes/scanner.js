@@ -1,9 +1,7 @@
 import StateMachine from 'javascript-state-machine';
-import logger from '../../logger';
+import { scannerLog } from '../../logger';
 import transitions from './transitions';
 
-
-const scannerLog = logger.extend('tokenize:getLexemes:scanner');
 
 export default new StateMachine({
   transitions,

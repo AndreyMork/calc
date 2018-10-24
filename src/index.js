@@ -1,8 +1,6 @@
 import tokenize from './tokenize';
-import logger from './logger';
+import { mainLog } from './logger';
 
-
-export const mainLog = logger.extend('main');
 
 export default (inputStr) => {
   mainLog(`input is '${inputStr}'`);

@@ -1,8 +1,6 @@
 import _ from 'lodash';
-import logger from './logger';
+import { utilsLog } from './logger';
 
-
-const utilsLog = logger.extend('utils');
 
 export const getTypeOfChar = (char) => {
   const log = utilsLog.extend('getTypeOfChar');
