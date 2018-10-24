@@ -5,7 +5,7 @@ import getLexemes from './src/tokenize/getLexemes';
 import evaluateLexemes from './src/tokenize/evaluateLexemes';
 import operatorsRegister from './src/operatorsRegister';
 import Constant from './src/entities/Constant';
-import buildAST from './src/buildAST/';
+import buildAST from './src/buildAST';
 import shuntingYard from './src/buildAST/shunting-yard';
 import math from './src/math';
 
