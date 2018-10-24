@@ -1,5 +1,5 @@
 import tokenize from './tokenize';
-import { mainLog } from './logger';
+import { mainLog } from './loggers';
 
 
 export default (inputStr) => {

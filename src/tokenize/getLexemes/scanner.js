@@ -1,5 +1,5 @@
 import StateMachine from 'javascript-state-machine';
-import { scannerLog } from '../../logger';
+import { scannerLog } from '../../loggers';
 import transitions from './transitions';
 
 

@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { utilsLog } from './logger';
+import { utilsLog } from './loggers';
 
 
 export const getTypeOfChar = (char) => {

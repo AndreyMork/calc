@@ -1,5 +1,5 @@
 import scanner from './scanner';
-import { getLexemesLog } from '../../logger';
+import { getLexemesLog } from '../../loggers';
 
 
 export default (str) => {
