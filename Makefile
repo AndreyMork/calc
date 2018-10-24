@@ -22,6 +22,9 @@ lint:
 test:
 	npm test
 
+log-test:
+	DEBUG="calc*" npm test
+
 test-coverage:
 	npm test -- --coverage
 
