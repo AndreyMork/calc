@@ -4,6 +4,7 @@ import getLexemes from './src/tokenize/getLexemes';
 import evaluateLexemes from './src/tokenize/evaluateLexemes';
 import operatorsRegister from './src/operatorsRegister';
 import Constant from './src/entities/Constant';
+import shuntingYard from './src/shunting-yard';
 import math from './src/math';
 
 export default {
@@ -12,6 +13,7 @@ export default {
   getLexemes,
   evaluateLexemes,
   operatorsRegister,
+  shuntingYard,
   Constant,
   math,
 };

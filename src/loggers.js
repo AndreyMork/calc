@@ -9,6 +9,8 @@ export const getLexemesLog = tokenizeLog.extend('getLexemes');
 export const scannerLog = getLexemesLog.extend('scanner');
 export const evaluateLexemesLog = tokenizeLog.extend('evaluateLexems');
 
+// export const shuntingYardLog = logger.extend('shuntingYard');
+
 export const utilsLog = logger.extend('utils');
 
 export default logger;
