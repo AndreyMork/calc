@@ -6,7 +6,7 @@ export default (reprStr) => {
   const value = isNumber(reprStr) ? Number(reprStr) : NaN;
   return {
     value,
-    reprStr,
+    orignalStr: reprStr,
     isOperand: true,
     isOperation: false,
     valueOf: () => value,
