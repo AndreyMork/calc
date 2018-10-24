@@ -2,6 +2,7 @@ import math from './math';
 
 
 const operationFactory = (priority, arity, associativity, callback, reprStr) => ({
+  reprStr,
   priority,
   arity,
   isOperator: true,
