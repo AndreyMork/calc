@@ -5,6 +5,8 @@ import math from './math';
 const operationFactory = (priority, arity, associativity, callback) => ({
   priority,
   arity,
+  isOperation: true,
+  isOperand: false,
   isRightAssociative: associativity === 'right',
   isLeftAssociative: associativity === 'left',
   eval: callback,
