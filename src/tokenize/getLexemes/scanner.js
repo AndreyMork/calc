@@ -25,7 +25,7 @@ export default new StateMachine({
     },
     saveAcc() {
       scannerLog(`saving '${this.acc}' as ${this.lexemeType}`);
-      this.lexemes.push({ val: this.acc, type: this.lexemeType });
+      this.lexemes.push({ value: this.acc, type: this.lexemeType });
       this.acc = '';
       this.lexemeType = null;
     },
