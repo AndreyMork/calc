@@ -12,7 +12,9 @@ gulp.task('debugConsole', (done) => {
   });
 
   const testStr = '123 - 12.^2 * .0';
+  const testTokens = container.tokenize(testStr);
   replServer.context.testStr = testStr;
+  replServer.context.testTokens = testTokens;
   Object.keys(container).forEach((key) => {
     replServer.context[key] = container[key];
   });

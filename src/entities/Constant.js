@@ -8,7 +8,8 @@ export default (reprStr) => {
     value,
     orignalStr: reprStr,
     isOperand: true,
-    isOperation: false,
+    isOperator: false,
     valueOf: () => value,
+    toString: () => reprStr,
   };
 };
