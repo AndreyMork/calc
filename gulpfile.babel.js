@@ -1,7 +1,7 @@
 import gulp from 'gulp';
 import repl from 'repl';
 import debug from 'debug';
-import container from './src/container';
+import container from './container';
 
 
 gulp.task('debugConsole', (done) => {
