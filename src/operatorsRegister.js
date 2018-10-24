@@ -1,7 +1,6 @@
 import math from './math';
 
 
-// QUESTION: some kind of name or representation string?
 const operationFactory = (priority, arity, associativity, callback, reprStr) => ({
   priority,
   arity,
