@@ -3,7 +3,7 @@ import getLexemes from './src/tokenize/getLexemes';
 import math from './src/math';
 import utils from './src/utils';
 import operatorsRegister from './src/operatorsRegister';
-import newConstant from './src/entities/Constant';
+// import newConstant from './src/entities/Constant';
 
 export default {
   tokenize,
@@ -11,5 +11,5 @@ export default {
   math,
   utils,
   operatorsRegister,
-  newConstant,
+  // newConstant,
 };
