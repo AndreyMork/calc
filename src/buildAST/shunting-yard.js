@@ -12,7 +12,7 @@ const createStack = () => {
       // moves items from top of the stack to a list
       // until predicate function called on stack top returns false
       // or stack emptied
-      // if called without predicate move whole stack to a list
+      // if called without predicate moves whole stack to a list
 
       const res = [];
       while (!this.isEmpty() && predicate(this.top())) {
@@ -34,7 +34,7 @@ export default (tokens) => {
     if (token.isOperator) {
       const topHasHigherPrecedenceThanToken = top => (
         (token.priority < top.priority)
-        || (token.priority === top.priority && token.isLeftAssociative));
+        || (token.priority === top.priority && top.isLeftAssociative));
 
       const movedOperators = operatorStack.moveStackToList(topHasHigherPrecedenceThanToken);
       operatorStack.push(token);
