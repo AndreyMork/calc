@@ -1,8 +1,8 @@
 run:
-	npm run babel-node src/bin/calc.js
+	npx babel-node src/bin/calc.js
 
 debug-console:
-	npm run gulp debugConsole
+	npx gulp debugConsole
 
 
 
@@ -17,7 +17,7 @@ publish:
 	npm publish
 
 lint:
-	npm run eslint .
+	npx eslint .
 
 test:
 	npm test
