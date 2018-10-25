@@ -1,12 +1,14 @@
 import tokenize from './tokenize';
-import logger from './logger';
+import buildAST from './buildAST';
+import evaluate from './evaluate';
+import { mainLog } from './loggers';
 
-
-export const mainLog = logger.extend('main');
-
+// TODO token string validation
 export default (inputStr) => {
   mainLog(`input is '${inputStr}'`);
   const tokens = tokenize(inputStr);
+  const ast = buildAST(tokens);
+  const res = evaluate(ast);
 
-  return tokens;
+  return res;
 };

@@ -1,6 +1,6 @@
 {
   "name": "calc",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "",
   "main": "dist/index.js",
   "bin": {
@@ -10,43 +10,51 @@
     "dist"
   ],
   "scripts": {
-    "gulp": "gulp",
-    "babel-node": "babel-node",
     "test": "jest",
-    "nodemon": "nodemon",
-    "eslint": "eslint",
-    "build": "NODE_ENV=production babel src --out-dir dist --source-maps inline",
+    "build": "NODE_ENV=production babel src --out-dir dist --verbose --no-comments",
     "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/AndreyMork/calc.git"
   },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "babel-cli": "*",
-    "babel-core": "*",
-    "babel-eslint": "*",
-    "babel-jest": "*",
-    "babel-preset-env": "*",
-    "babel-preset-stage-0": "*",
-    "eslint": "*",
-    "eslint-config-airbnb-base": "*",
-    "eslint-plugin-import": "*",
-    "eslint-plugin-jest": "*",
-    "jest": "*",
-    "jest-cli": "*"
-  },
   "bugs": {
     "url": "https://github.com/AndreyMork/calc"
   },
   "homepage": "https://github.com/AndreyMork/calc#readme",
+  "author": "",
+  "license": "ISC",
   "dependencies": {
+    "@babel/polyfill": "^7.0.0",
+    "@babel/runtime": "^7.1.2",
     "commander": "^2.19.0",
     "debug": "^4.1.0",
-    "gulp": "^4.0.0",
     "javascript-state-machine": "^3.1.0",
     "lodash": "^4.17.11"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.2",
+    "@babel/node": "^7.0.0",
+    "@babel/plugin-proposal-export-default-from": "^7.0.0",
+    "@babel/plugin-proposal-export-namespace-from": "^7.0.0",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.0.0",
+    "@babel/plugin-proposal-numeric-separator": "^7.0.0",
+    "@babel/plugin-proposal-optional-chaining": "^7.0.0",
+    "@babel/plugin-proposal-pipeline-operator": "^7.0.0",
+    "@babel/plugin-proposal-unicode-property-regex": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^23.6.0",
+    "babel-preset-minify": "^0.5.0",
+    "eslint": "^5.7.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jest": "^21.26.1",
+    "gulp": "^4.0.0",
+    "jest": "^23.6.0",
+    "jest-cli": "^23.6.0"
   }
 }
