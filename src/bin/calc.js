@@ -2,13 +2,13 @@
 
 import program from 'commander';
 import calc from '..';
+import repl from '../repl';
 import { version } from '../../package.json';
-
 
 program
   .description('')
   .version(version)
-  .arguments('<input>')
+  // .arguments('<input>')
   // .option()
-  .action(input => calc(input))
+  .action(() => repl(calc))
   .parse(process.argv);
