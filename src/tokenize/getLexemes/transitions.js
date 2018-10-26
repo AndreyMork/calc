@@ -20,7 +20,6 @@ const saveLexeme = {
 };
 
 // TODO: unary minus?
-// TODO: brackets
 const pendingTransitions = {
   name: 'scan',
   from: 'pending',

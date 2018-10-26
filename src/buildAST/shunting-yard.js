@@ -45,11 +45,6 @@ export default (tokens) => {
       throw new Error(`unexpected special character ${token.value}`);
     }
     if (token.isOperator) {
-      // if (operatorStack.top().value === '(') {
-      //   operatorStack.push(token);
-      //   return acc;
-      // }
-
       const topHasHigherPrecedenceThanToken = top => (
         top !== '('
         && ((token.priority < top.priority)
