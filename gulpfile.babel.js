@@ -9,7 +9,7 @@ gulp.task('debugConsole', (done) => {
     prompt: '> ',
   });
 
-  const testStr = '1 + 2 * 3';
+  const testStr = '(1 + 2) * 3';
   const testTokens = container.tokenize(testStr);
   replServer.context.testStr = testStr;
   replServer.context.testTokens = testTokens;
