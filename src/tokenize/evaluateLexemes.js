@@ -1,4 +1,5 @@
 import operatorsRegister from '../operatorsRegister';
+import specialCharactersRegister from '../specialCharactersRegister';
 import Constant from '../entities/Constant';
 // import { evaluateLexemesLog } from '../loggers';
 
@@ -9,6 +10,9 @@ const lexemeToToken = (lex) => {
   }
   if (lex.type === 'operator') {
     return operatorsRegister[lex.value];
+  }
+  if (lex.type === 'specialCharacter') {
+    return specialCharactersRegister[lex.value];
   }
   if (lex.type === 'trash') {
     throw new Error(`Unexpected token ${lex.value}`);
