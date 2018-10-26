@@ -11,15 +11,17 @@ describe('tokenization', () => {
     ];
     expect(getLexemes(inputStr)).toEqual(expectedTokens);
 
-    const inputStr2 = ' + __a_b12-.5* 432 2.   \t .  a..a 12.2';
+    const inputStr2 = ' + __a_b12-(.5* 432 2.)   \t .  a..a 12.2';
     const expectedTokens2 = [
       { value: '+', type: 'operator' },
       { value: '__a_b12', type: 'id' },
       { value: '-', type: 'operator' },
+      { value: '(', type: 'specialCharacter' },
       { value: '.5', type: 'num' },
       { value: '*', type: 'operator' },
       { value: '432', type: 'num' },
       { value: '2.', type: 'num' },
+      { value: ')', type: 'specialCharacter' },
       { value: '.', type: 'trash' },
       { value: 'a..a', type: 'trash' },
       { value: '12.2', type: 'num' },
