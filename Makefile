@@ -29,4 +29,4 @@ test-coverage:
 	npm test -- --coverage
 
 watch-test:
-	npm test -- --watch --notify
+	DEBUG="calc*" npm test -- --watch

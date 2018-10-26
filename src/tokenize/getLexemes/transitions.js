@@ -4,6 +4,7 @@ import { getTypeOfChar } from '../../utils';
 const defaultSaveTransitions = {
   whitespace: 'readyToSave',
   operator: 'readyToSave',
+  specialCharacter: 'readyToSave',
 };
 
 const startScanning = {
@@ -19,7 +20,6 @@ const saveLexeme = {
 };
 
 // TODO: unary minus?
-// TODO: brackets
 const pendingTransitions = {
   name: 'scan',
   from: 'pending',
@@ -32,6 +32,7 @@ const pendingTransitions = {
       digit: 'integerPart',
       point: 'singlePoint',
       operator: 'operator',
+      specialCharacter: 'specialCharacter',
       trash: 'trash',
     };
 
@@ -45,6 +46,15 @@ const operatorTransitions = {
   from: 'operator',
   to() {
     this.lexemeType = 'operator';
+    return 'readyToSave';
+  },
+};
+
+const specialCharacterTransitions = {
+  name: 'scan',
+  from: 'specialCharacter',
+  to() {
+    this.lexemeType = 'specialCharacter';
     return 'readyToSave';
   },
 };
@@ -161,6 +171,7 @@ const fractionalPartTransitions = {
 export default [
   startScanning,
   operatorTransitions,
+  specialCharacterTransitions,
   saveLexeme,
   pendingTransitions,
   trashTransitions,
