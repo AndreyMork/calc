@@ -20,9 +20,9 @@ describe('getTypeOfChar', () => {
     expect(getTypeOfChar('a')).not.toBe('digit');
   });
 
-  test('operator', () => {
-    expect(getTypeOfChar('+')).toBe('operator');
-    expect(getTypeOfChar('-')).toBe('operator');
+  test('operators and signs', () => {
+    expect(getTypeOfChar('+')).toBe('sign');
+    expect(getTypeOfChar('-')).toBe('sign');
     expect(getTypeOfChar('/')).toBe('operator');
     expect(getTypeOfChar('*')).toBe('operator');
     expect(getTypeOfChar('^')).toBe('operator');

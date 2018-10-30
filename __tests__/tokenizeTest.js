@@ -2,12 +2,14 @@ import getLexemes from '../src/tokenize/getLexemes';
 
 describe('tokenization', () => {
   test('lexeme scanner', () => {
-    const inputStr = 'abc + 123 && ';
+    const inputStr = 'abc + 123 && 10.2e-2 10.2.e ';
     const expectedTokens = [
       { value: 'abc', type: 'id' },
       { value: '+', type: 'operator' },
       { value: '123', type: 'num' },
       { value: '&&', type: 'trash' },
+      { value: '10.2e-2', type: 'num' },
+      { value: '10.2.e', type: 'trash' },
     ];
     expect(getLexemes(inputStr)).toEqual(expectedTokens);
 

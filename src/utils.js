@@ -13,13 +13,14 @@ export const getTypeOfChar = (char) => {
   }
 
   const matchers = {
-    alpha: /\p{L}/ui.test(char),
-    digit: /\d/.test(char),
-    underscore: /[_]/.test(char),
-    whitespace: /\s/.test(char),
-    point: /[.,]/.test(char),
-    specialCharacter: /[()]/.test(char),
-    operator: /[+\-*/^]/.test(char),
+    alpha: /^\p{L}$/ui.test(char),
+    digit: /^\d$/.test(char),
+    underscore: /^[_]$/.test(char),
+    whitespace: /^\s$/.test(char),
+    point: /^[.,]$/.test(char),
+    specialCharacter: /^[()]$/.test(char),
+    sign: /^[+-]$/.test(char),
+    operator: /^[*/^]$/.test(char),
   };
   const type = _.findKey(matchers) ?? 'trash';
   log(`'${char}' is '${type}'`);
