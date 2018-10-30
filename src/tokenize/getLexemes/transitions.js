@@ -3,6 +3,7 @@ import { getTypeOfChar } from '../../utils';
 
 const defaultSaveTransitions = {
   whitespace: 'readyToSave',
+  sign: 'readyToSave',
   operator: 'readyToSave',
   specialCharacter: 'readyToSave',
 };
@@ -31,6 +32,7 @@ const pendingTransitions = {
       underscore: 'name',
       digit: 'integerPart',
       point: 'singlePoint',
+      sign: 'operator',
       operator: 'operator',
       specialCharacter: 'specialCharacter',
       trash: 'trash',
@@ -98,10 +100,11 @@ const integerPartTransitions = {
   name: 'scan',
   from: 'integerPart',
   to(char) {
-    const type = getTypeOfChar(char);
+    const type = char.toLocaleLowerCase() === 'e' ? 'exp' : getTypeOfChar(char);
     const transitions = {
       digit: 'integerPart',
       point: 'point',
+      exp: 'exponentialSign',
     };
 
     const nextState = transitions[type] ?? defaultSaveTransitions[type] ?? 'trash';
@@ -136,9 +139,10 @@ const pointTranisitions = {
   name: 'scan',
   from: 'point',
   to(char) {
-    const type = getTypeOfChar(char);
+    const type = char.toLocaleLowerCase() === 'e' ? 'exp' : getTypeOfChar(char);
     const transitions = {
       digit: 'fractionalPart',
+      exp: 'exponentialSign',
     };
 
     const nextState = transitions[type] ?? defaultSaveTransitions[type] ?? 'trash';
@@ -154,9 +158,43 @@ const fractionalPartTransitions = {
   name: 'scan',
   from: 'fractionalPart',
   to(char) {
-    const type = getTypeOfChar(char);
+    const type = char.toLocaleLowerCase() === 'e' ? 'exp' : getTypeOfChar(char);
     const transitions = {
       digit: 'fractionalPart',
+      exp: 'exponentialSign',
+    };
+
+    const nextState = transitions[type] ?? defaultSaveTransitions[type] ?? 'trash';
+    if (nextState === 'readyToSave') {
+      this.lexemeType = 'num';
+    }
+
+    return nextState;
+  },
+};
+
+const exponentialSignTransitions = {
+  name: 'scan',
+  from: 'exponentialSign',
+  to(char) {
+    const type = getTypeOfChar(char);
+    const transitions = {
+      digit: 'exponentialPart',
+      sign: 'exponentialPart',
+    };
+
+    const nextState = transitions[type] ?? 'trash';
+    return nextState;
+  },
+};
+
+const exponentialPartTransitions = {
+  name: 'scan',
+  from: 'exponentialPart',
+  to(char) {
+    const type = getTypeOfChar(char);
+    const transitions = {
+      digit: 'exponentialPart',
     };
 
     const nextState = transitions[type] ?? defaultSaveTransitions[type] ?? 'trash';
@@ -180,4 +218,6 @@ export default [
   singlePointTransitions,
   pointTranisitions,
   fractionalPartTransitions,
+  exponentialSignTransitions,
+  exponentialPartTransitions,
 ];
