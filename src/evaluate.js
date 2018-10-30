@@ -1,6 +1,6 @@
 const evaluate = (node) => {
   if (node.data.isOperand) {
-    return node.data;
+    return node.data.valueOf();
   }
 
   const args = node.children.map(evaluate);
