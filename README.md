@@ -5,10 +5,20 @@
 [![Build Status](https://travis-ci.org/AndreyMork/calc.svg?branch=master)](https://travis-ci.org/AndreyMork/calc)
 ***
 ## Description
+Simple command line calculator.
 
 ***
 ## Installation
+```npm install aethra-calc```
 
 ## Usage
+```
+$ calc
+calc> -2 + 1
+-1
+calc> 10e2 * 2 ^ (-2)
+250
+calc> exit
+```
 
 ## Example

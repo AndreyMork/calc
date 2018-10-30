@@ -8,10 +8,11 @@ export default (callback) => {
   });
 
   rl.setPrompt('calc> ');
+  console.log("To close calculator type 'exit'\n");
   rl.prompt();
 
   rl.on('line', (line) => {
-    if (line === 'exit') {
+    if (line.trim() === 'exit') {
       rl.close();
       return;
     }

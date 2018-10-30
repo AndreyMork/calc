@@ -13,6 +13,10 @@ build:
 	rm -rf dist
 	npm run build
 
+link:
+	make build
+	sudo npm link
+
 publish:
 	npm publish
 
@@ -22,11 +26,11 @@ lint:
 test:
 	npm test
 
-log-test:
-	DEBUG="calc*" npm test
-
 test-coverage:
 	npm test -- --coverage
 
+log-test:
+	DEBUG="calc*" npm test
+
 watch-test:
-	npm test -- --watch --notify
+	DEBUG="calc*" npm test -- --watch

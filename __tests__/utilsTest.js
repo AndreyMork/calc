@@ -20,18 +20,28 @@ describe('getTypeOfChar', () => {
     expect(getTypeOfChar('a')).not.toBe('digit');
   });
 
-  test('operator', () => {
-    expect(getTypeOfChar('+')).toBe('operator');
-    expect(getTypeOfChar('-')).toBe('operator');
+  test('operators and signs', () => {
+    expect(getTypeOfChar('+')).toBe('sign');
+    expect(getTypeOfChar('-')).toBe('sign');
     expect(getTypeOfChar('/')).toBe('operator');
     expect(getTypeOfChar('*')).toBe('operator');
     expect(getTypeOfChar('^')).toBe('operator');
-    expect(getTypeOfChar('&')).not.toBe('operator');
   });
 
   test('whitespace', () => {
     expect(getTypeOfChar(' ')).toBe('whitespace');
     expect(getTypeOfChar('\t')).toBe('whitespace');
+  });
+
+  test('specialCharacter', () => {
+    expect(getTypeOfChar('(')).toBe('specialCharacter');
+    expect(getTypeOfChar(')')).toBe('specialCharacter');
+  });
+
+  test('trash', () => {
+    expect(getTypeOfChar('&')).toBe('trash');
+    expect(getTypeOfChar('?')).toBe('trash');
+    expect(getTypeOfChar('%')).toBe('trash');
   });
 
   test('errors', () => {

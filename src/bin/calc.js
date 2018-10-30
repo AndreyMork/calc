@@ -6,7 +6,7 @@ import repl from '../repl';
 import { version } from '../../package.json';
 
 program
-  .description('')
+  .description('Simple command line calculator.')
   .version(version)
   // .arguments('<input>')
   // .option()

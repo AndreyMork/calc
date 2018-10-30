@@ -31,10 +31,24 @@ export default (tokens) => {
     if (token.isOperand) {
       return [...acc, token];
     }
+    if (token.isSpecialCharacter) {
+      if (token.value === '(') {
+        operatorStack.push(token);
+        return acc;
+      }
+      if (token.value === ')') {
+        const movedOperators = operatorStack.moveStackToList(top => top.value !== '(');
+        operatorStack.pop(); // discard '('
+        return [...acc, ...movedOperators];
+      }
+
+      throw new Error(`unexpected special character ${token.value}`);
+    }
     if (token.isOperator) {
       const topHasHigherPrecedenceThanToken = top => (
-        (token.priority < top.priority)
-        || (token.priority === top.priority && top.isLeftAssociative));
+        top !== '('
+        && ((token.priority < top.priority)
+        || (token.priority === top.priority && top.isLeftAssociative)));
 
       const movedOperators = operatorStack.moveStackToList(topHasHigherPrecedenceThanToken);
       operatorStack.push(token);
