@@ -37,12 +37,16 @@ const tierTwoOperations = {
 // *** Tier3 ***
 const buildTierThreeOperation = tierConstructor(3);
 
+// QUESTION: unary associativity?
 const tierThreeOperations = {
+  '-u': buildTierThreeOperation(1, 'right', math.unaryNegation, '-u'),
+  '+u': buildTierThreeOperation(1, 'right', math.unaryPositive, '+u'),
   '^': buildTierThreeOperation(2, 'right', math.pow, '^'),
 };
 
 
 export default {
+  getAmbiguousOperators: () => ['-', '+'],
   ...tierOneOperations,
   ...tierTwoOperations,
   ...tierThreeOperations,
