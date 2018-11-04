@@ -1,6 +1,11 @@
 import { buildASTLog } from '../loggers';
 import shuntingYard from './shunting-yard';
 
+const extractArgsFromPostfixList = (tokens, operationArity) => (
+  tokens.slice(-operationArity));
+
+const removeArgsFromPostfixList = (tokens, operationArity) => (
+  tokens.slice(0, -operationArity));
 
 const buildAST = (tokens) => {
   const postfixTokens = shuntingYard(tokens);
@@ -8,12 +13,15 @@ const buildAST = (tokens) => {
 
   const treeList = postfixTokens.reduce((acc, token) => {
     if (token.isOperand) {
-      return [...acc, { data: token }];
+      const newNode = { data: token };
+      const newAcc = [...acc, newNode];
+      return newAcc;
     }
-
-    const operationArgs = acc.slice(-token.arity);
-    const newAcc = acc.slice(0, -token.arity);
-    return [...newAcc, { data: token, children: operationArgs }];
+    const operationArgs = extractArgsFromPostfixList(acc, token.arity);
+    const newPostfixList = removeArgsFromPostfixList(acc, token.arity);
+    const newNode = { data: token, children: operationArgs };
+    const newAcc = [...newPostfixList, newNode];
+    return newAcc;
   }, []);
 
   if (treeList.length > 1) {
