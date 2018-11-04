@@ -1,11 +1,11 @@
 import { buildASTLog } from '../loggers';
 import shuntingYard from './shunting-yard';
 
-const extractArgsFromPostfixList = (postfixList, operationArity) => (
-  postfixList.slice(-operationArity));
+const extractArgsFromPostfixList = (postfixList, numberOfArgs) => (
+  postfixList.slice(-numberOfArgs));
 
-const removeArgsFromPostfixList = (postfixList, operationArity) => (
-  postfixList.slice(0, -operationArity));
+const removeArgsFromPostfixList = (postfixList, numberOfArgs) => (
+  postfixList.slice(0, -numberOfArgs));
 
 const buildAST = (tokens) => {
   const postfixTokens = shuntingYard(tokens);
